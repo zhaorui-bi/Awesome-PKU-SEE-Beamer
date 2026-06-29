@@ -72,4 +72,3 @@ For MacBook-native full-screen preview, you can switch to `aspectratio=1610`.
 
 Template source files are released under the MIT License. See `LICENSE`.
 
-Logo assets in `logo/` are not covered by the MIT License. See `NOTICE.md`.
