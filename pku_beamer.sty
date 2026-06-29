@@ -1,0 +1,214 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{pku_beamer}[2026/06/29 PKU SEE Beamer template]
+
+% Core packages
+\RequirePackage{graphicx}
+\RequirePackage{xcolor}
+\RequirePackage{etoolbox}
+\RequirePackage{caption}
+\RequirePackage{booktabs}
+\RequirePackage{tabularx}
+\RequirePackage{ragged2e}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{amsthm}
+\RequirePackage{bbm}
+\RequirePackage{natbib}
+\RequirePackage{apalike}
+\RequirePackage{pgfpages}
+\RequirePackage{wasysym}
+\RequirePackage[version=4]{mhchem}
+\RequirePackage{listings}
+
+% Palette
+\definecolor{PKURed}{RGB}{139,0,18}
+\definecolor{PKUDark}{RGB}{32,32,32}
+\definecolor{PKUGray}{RGB}{92,92,92}
+\definecolor{PKULightGray}{RGB}{224,224,224}
+\definecolor{PKUPaleRed}{RGB}{250,245,246}
+\colorlet{CASblue}{PKURed}
+
+% Chinese font helper. Call this after loading ctex.
+\newcommand{\PKUSetupCJKFonts}{%
+  \setCJKmainfont{FandolKai-Regular.otf}%
+  \setCJKsansfont{FandolKai-Regular.otf}%
+  \setCJKmonofont{FandolKai-Regular.otf}%
+}
+
+% Global Beamer theme settings
+\mode<presentation>{%
+  \usefonttheme{professionalfonts}
+  \setbeamersize{text margin left=0.85cm,text margin right=0.85cm}
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{frametitle continuation}{}
+  \setbeamertemplate{itemize items}[circle]
+  \setbeamertemplate{itemize subitem}[ball]
+  \setbeamertemplate{itemize subsubitem}[triangle]
+  \setbeamertemplate{enumerate items}[default]
+}
+
+\setbeamercolor{normal text}{fg=PKUDark,bg=white}
+\setbeamercolor{structure}{fg=PKURed}
+\setbeamercolor{frametitle}{fg=PKURed,bg=white}
+\setbeamercolor{title}{fg=PKURed}
+\setbeamercolor{subtitle}{fg=PKUGray}
+\setbeamercolor{author}{fg=PKUDark}
+\setbeamercolor{institute}{fg=PKUGray}
+\setbeamercolor{date}{fg=PKUGray}
+\setbeamercolor{item}{fg=PKURed}
+\setbeamercolor{section in toc}{fg=PKUDark}
+\setbeamercolor{subsection in toc}{fg=PKUGray}
+\setbeamercolor{block title}{fg=white,bg=PKURed}
+\setbeamercolor{block body}{fg=PKUDark,bg=PKUPaleRed}
+\setbeamercolor{footline}{fg=PKUGray,bg=white}
+
+\setbeamerfont{title}{series=\bfseries,size=\LARGE}
+\setbeamerfont{subtitle}{size=\large}
+\setbeamerfont{author}{series=\bfseries,size=\normalsize}
+\setbeamerfont{institute}{size=\small}
+\setbeamerfont{date}{size=\small}
+\setbeamerfont{frametitle}{series=\bfseries,size=\Large}
+\setbeamerfont{section title}{series=\bfseries,size=\LARGE}
+\setbeamerfont{footline}{size=\scriptsize}
+
+\captionsetup{font=scriptsize,labelfont=bf}
+
+\lstset{%
+  basicstyle=\ttfamily\scriptsize,
+  keywordstyle=\color{PKURed}\bfseries,
+  commentstyle=\color{PKUGray},
+  stringstyle=\color{PKUDark},
+  numbers=left,
+  numberstyle=\tiny\color{PKUGray},
+  frame=single,
+  rulecolor=\color{PKULightGray},
+  breaklines=true,
+  columns=fullflexible,
+  keepspaces=true,
+  tabsize=2
+}
+
+% Public helper commands
+\newcommand{\PKUHighlight}[1]{\textcolor{PKURed}{\textbf{#1}}}
+\let\mykwd\PKUHighlight
+
+\newcommand{\PKULogoBar}{%
+  \noindent
+  \makebox[\textwidth][c]{%
+    \includegraphics[height=1.48cm]{logo/pku.png}%
+    \hspace{0.65cm}%
+    \raisebox{-0.03ex}{\includegraphics[height=1.48cm]{logo/see.png}}%
+  }%
+}
+
+\newcommand{\PKUTitlePage}{%
+  \begin{frame}[plain,noframenumbering]
+    \vspace*{0.35cm}
+    \PKULogoBar
+    \vfill
+    \begin{center}
+      {\usebeamerfont{title}\color{PKUDark}\inserttitle\par}
+      \vspace{0.35cm}
+      {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}
+      \vspace{0.85cm}
+      {\usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor\par}
+      \vspace{0.18cm}
+      {\usebeamerfont{institute}\usebeamercolor[fg]{institute}\insertinstitute\par}
+      \vspace{0.35cm}
+      {\usebeamerfont{date}\usebeamercolor[fg]{date}\insertdate\par}
+    \end{center}
+    \vfill
+  \end{frame}
+}
+
+\newcommand{\presentationtitle}[4]{%
+  \title{#1}%
+  \subtitle{#2}%
+  \author{#3}%
+  \date{#4}%
+  \PKUTitlePage
+}
+
+\newcommand{\PKUOutlineFrame}{%
+  \begin{frame}{Outline}
+    \tableofcontents
+  \end{frame}
+}
+
+\newcommand{\PKUSectionPage}{%
+  \begin{frame}[plain,noframenumbering]
+    \vfill
+    \begin{center}
+      {\usebeamerfont{section title}\usebeamercolor[fg]{title}\insertsection\par}
+      \vspace{0.35cm}
+      {\color{PKULightGray}\rule{0.48\paperwidth}{0.5pt}}
+    \end{center}
+    \vfill
+  \end{frame}
+}
+
+\newcommand{\PKUEnableSectionPages}{%
+  \AtBeginSection[]{\PKUSectionPage}
+}
+
+\newcommand{\PKUAcknowledgementsFrame}{%
+  \begin{frame}{Acknowledgements}
+    \vspace{0.25cm}
+    \begin{columns}[T,totalwidth=\textwidth]
+      \begin{column}{0.52\textwidth}
+        {\bfseries Collaborators}\par
+        \vspace{0.08cm}
+        {\color{PKULightGray}\rule{0.86\linewidth}{0.35pt}}\par
+        \vspace{0.18cm}
+        Collaborator Name\par
+        Group or Lab Name\par
+        Institution Name
+      \end{column}
+      \begin{column}{0.38\textwidth}
+        {\bfseries Support}\par
+        \vspace{0.08cm}
+        {\color{PKULightGray}\rule{0.86\linewidth}{0.35pt}}\par
+        \vspace{0.18cm}
+        Funding Program\par
+        Research Platform\par
+        Technical Support
+      \end{column}
+    \end{columns}
+    \vfill
+    {\small Thank you to everyone who contributed to this work.}
+  \end{frame}
+}
+
+\newcommand{\PKUThankYouFrame}[1][Acknowledgements]{\PKUAcknowledgementsFrame}
+
+\makeatletter
+\def\newblock{\beamer@newblock}
+
+\setbeamertemplate{frametitle}{%
+  \vspace*{0.22cm}
+  \insertframetitle\par
+  \vspace*{-0.05cm}
+  {\color{PKULightGray}\rule{\textwidth}{0.35pt}}
+}
+
+\setbeamertemplate{footline}{%
+  \leavevmode
+  \hbox{%
+    \hspace*{0.035\paperwidth}%
+    \raisebox{-0.86cm}{\includegraphics[width=0.135\paperwidth]{logo/pkusee.png}}%
+    \hspace*{0.025\paperwidth}%
+    \raisebox{-0.28cm}{\textcolor{PKULightGray}{\rule{0.765\paperwidth}{0.35pt}}}%
+  }%
+  \vskip-0.30cm
+  \hbox to \paperwidth{%
+    \hspace*{0.205\paperwidth}%
+    {\usebeamerfont{footline}\usebeamercolor[fg]{footline}%
+      \insertshortauthor\hspace{0.2cm}\textit{\insertshorttitle}}%
+    \hfill
+    {\usebeamerfont{footline}\usebeamercolor[fg]{footline}%
+      \insertframenumber{} / \inserttotalframenumber}%
+    \hspace*{0.05\paperwidth}%
+  }%
+  \vskip0.34cm
+}
+\makeatother

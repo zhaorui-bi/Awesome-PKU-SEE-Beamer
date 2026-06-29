@@ -1,0 +1,80 @@
+\documentclass[aspectratio=169]{beamer}
+\mode<presentation>
+
+\usepackage[UTF8,fontset=fandol]{ctex}
+\usepackage{pku_beamer}
+
+\PKUSetupCJKFonts
+
+\title[Short Title]{Presentation Title}
+\subtitle{Presentation Subtitle}
+\author[Author Name]{Author Name}
+\institute[PKU SEE]{School of Environment and Energy, Peking University}
+\date{\today}
+
+\begin{document}
+
+\PKUTitlePage
+\PKUOutlineFrame
+
+\section{Background}
+
+\begin{frame}{Motivation}
+  \begin{itemize}
+    \item State the research question or presentation context.
+    \item Use \PKUHighlight{highlighted keywords} for important terms.
+    \item Keep each slide focused on one main message.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Problem Statement}
+  \begin{block}{Core question}
+    What problem is being solved, and why does it matter?
+  \end{block}
+
+  \vspace{0.35cm}
+
+  A concise formulation can be written as
+  \[
+    \hat{\theta} = \arg\min_{\theta} \mathcal{L}(\theta; X, y).
+  \]
+\end{frame}
+
+\section{Method}
+
+\begin{frame}{Workflow}
+  \begin{enumerate}
+    \item Prepare the input data.
+    \item Define the model or analytical method.
+    \item Evaluate the result with clear metrics.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{Result Summary}
+  \begin{table}
+    \centering
+    \caption{Example table}
+    \begin{tabular}{lcc}
+      \toprule
+      Method & Metric A & Metric B \\
+      \midrule
+      Baseline & 0.71 & 0.68 \\
+      Proposed & 0.84 & 0.79 \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+\end{frame}
+
+\section{Conclusion}
+
+\begin{frame}{Key Takeaways}
+  \begin{itemize}
+    \item Summarize the most important finding.
+    \item Explain the practical implication.
+    \item End with one concrete next step.
+  \end{itemize}
+\end{frame}
+
+\PKUAcknowledgementsFrame
+
+\end{document}
