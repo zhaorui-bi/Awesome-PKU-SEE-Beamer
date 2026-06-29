@@ -2,8 +2,6 @@
 
 A clean 16:9 Beamer presentation template for academic talks, with PKU SEE branding, a title page, outline page, compact footer, and acknowledgements slide.
 
-![Template preview](docs/preview.png)
-
 ## Features
 
 - 16:9 presentation layout.
